@@ -44,3 +44,219 @@ body::-webkit-scrollbar {
 .a-center {
   align-items: center;
 }
+
+.release {
+  color: #999999; /* or some other shade of gray */
+  font-size: 0.75rem; /* or some other small font size */
+  margin-left: 5rem;
+}
+
+.description {
+  max-width: 50%;
+  color: #999999;
+  margin-left: 5rem;
+}
+
+span {
+  color: white;
+  display: block;
+  font-size: 1.3vw;
+  line-height: 1.2rem;
+  margin: 0.6em 0;
+  min-height: 1.8rem;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.user1 {
+  background-image: url("http://occ-0-1723-6.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABdrnt7mVk1GYZgS1JUviU1co0zr-JS46vxM6qTW1scI_0xuFL1TrWAx1FLWsha0tKXxw_aYIk5RvnOKxf5E2nOVZgRFvkW69xZcu.png?r=00c");
+ width: 35%;
+  float: left;
+  width: 100;
+  height: 210px;
+  background-size: cover;
+  cursor: pointer;
+  margin-right: 15px;
+  border-radius: 15px;
+}
+
+.user2 {
+  background-image: url("http://occ-0-1723-6.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABa4MDmonLTXmSSsQuWBl7Ynbv8gadOY2gloUseD0EfFTYs5NDFklCKMFaBWssY8dXAreu4-QNruxmIjwzbGx8y_SZA1pWCxVI1Gc.png?r=7f1");
+width: 35%;
+  float: left;
+  width: 100;
+  height: 210px;
+  background-size: cover;
+  cursor: pointer;
+  margin-right: 15px;
+  border-radius: 15px;
+}
+
+.user3 {
+  background-image: url("http://occ-0-1723-6.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABcie5YsV5Mo8p4S6FjS--ksoKB32RtbqEBOefLal0UQb8X5uxOWn8Cd17fh_kH2WHu8x_s8c_f9fhysaZXDihIEdedPto4cH22vX.png?r=869");
+ width: 35%;
+  float: left;
+  width: 100;
+  height: 210px;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.user4 {
+  background-image: url("http://occ-0-1723-6.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABajp58Ly3XyrQjdbRsx6_zRne43d3L676WQbA0cv9FmlCaM2ReF8QMrGv9frXlbxwhjTK9rMhCMymTrLCoWy_N4ZYWiAueL9FnyU.png?r=ab6");
+ width: 35%;
+  float: left;
+  width: 100;
+  height: 210px;
+  background-size: cover;
+  cursor: pointer;
+  margin-left: 15px;
+  border-radius: 15px;
+}
+
+.user5 {
+  background-image: url("http://occ-0-1723-6.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY5aZ3CCf5n_d11Vs9DsYcyj8BB9qiCnt9cl4CEnbkhPoJ2yjD6npJGQlZKvoxq-vfLFyBER0XxpAwBdDNbnYp-R7kuFpXLvCS_3sispgIE0IfMdXCZtTtSZIvkZDXb0qUiqVSa_iVFVZfs36Gs.png?r=0b4");
+width: 25%;
+  float: left;
+  width: 100;
+  height: 210px;
+  background-size: cover;
+}
+
+.profiles {
+  width: 900px;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 175px;
+}
+
+.button {
+  margin-left: 595px;
+  margin-top: 50px;
+}
+
+.butt {
+  background-color: transparent;
+  border: 1px solid grey;
+  color: grey;
+  cursor: pointer;
+  font-size: 1.2vw;
+  margin: 2em 0 1em;
+  padding: 0.5em 1.5em;
+}
+
+
+
+.div {
+  margin-right: 35px;
+}
+
+.h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.menu-trigger img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background-color: #141414;
+  padding: 10px 20px;
+  width: 200px;
+  border-radius: 8px;
+}
+
+.dropdown-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: 500ms ease;;
+}
+
+.dropdown-menu.inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: 500ms ease;
+}
+
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  background: #141414;
+}
+
+.h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2rem;
+  color: white;
+}
+
+.spart {
+  font-size: 14px;
+  color: white;
+  font-weight: 400;
+}
+
+.dropdown-menu ul li {
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-menu ul li:hover {
+  color: rgba(212, 33, 9);
+  cursor: pointer;
+}
+
+.dropdown-menu ul li:hover img {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.dropdownItem {
+  display: flex;
+  margin: 10px auto;
+}
+
+.dropdownItem img {
+  max-width: 20px;
+  margin-right: 10px;
+  opacity: 0.5;
+  transition: 500ms;
+}
+
+.dropdownItem a {
+  max-width: 100px;
+  margin-left: 10px;
+  transition: 500ms;
+}
+
+.logout {
+  margin-right: 15px;
+}
+

@@ -6,6 +6,7 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 export default function Navbar({ isScrolled }) {
   const navigate = useNavigate();
@@ -61,9 +62,10 @@ export default function Navbar({ isScrolled }) {
               }}
             />
           </div>
-          <button onClick={() => signOut(firebaseAuth)}>
+          <button className="logout" onClick={() => signOut(firebaseAuth)}>
             <FaPowerOff />
           </button>
+          <Dropdown />
         </div>
       </nav>
     </Container>

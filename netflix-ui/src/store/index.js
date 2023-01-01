@@ -5,11 +5,17 @@ import {
 } from "@reduxjs/toolkit";
 import { API_KEY, TMBD_BASE_URL } from "../utils/constants";
 import axios from "axios";
+import { useState } from "react";
 
 const initialState = {
   movies: [],
   genresLoaded: false,
   genres: [],
+};
+
+export const requests = {
+  requestPopular: `${TMBD_BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+  requestTrailer: `${TMBD_BASE_URL}/movie/{movie_id}/videos?api_key=${API_KEY}&language=en-US`,
 };
 
 export const getGenres = createAsyncThunk("netflix/genres", async () => {
@@ -19,6 +25,8 @@ export const getGenres = createAsyncThunk("netflix/genres", async () => {
   return genres;
 });
 
+
+
 const createArrayFromRawData = (array, moviesArray, genres) => {
   array.forEach((movie) => {
     const movieGenres = [];
@@ -26,7 +34,8 @@ const createArrayFromRawData = (array, moviesArray, genres) => {
       const name = genres.find(({ id }) => id === genre);
       if (name) movieGenres.push(name.name);
     });
-    if (movie.backdrop_path) { // if the movie has a poster we want to puch it to an array
+    if (movie.backdrop_path) {
+      // if the movie has a poster we want to puch it to an array
       moviesArray.push({
         id: movie.id,
         name: movie?.original_name ? movie.original_name : movie.original_title,
@@ -44,8 +53,8 @@ const getRawData = async (api, genres, paging) => {
       data: { results },
     } = await axios.get(`${api}${paging ? `&page=${i}` : ""}`);
     createArrayFromRawData(results, moviesArray, genres);
-    return moviesArray;
   }
+  return moviesArray;
 };
 
 export const fetchMovies = createAsyncThunk(
@@ -64,9 +73,42 @@ export const fetchMovies = createAsyncThunk(
   }
 );
 
-//  return getRawData(
-//    `${TMBD_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genres}`
-//  );
+export const fetchDataByGenre = createAsyncThunk(
+  "netflix/genre",
+  async ({ genre, type }, thunkApi) => {
+    // thunkApi contains all the states
+    const {
+      netflix: { genres },
+    } = thunkApi.getState();
+    // Types are different movies, series, and TV seasons and we will get the trending by these types
+    return getRawData(
+      `${TMBD_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genres}`,
+      genres
+    );
+  }
+);
+
+export const getUserLikedMovies = createAsyncThunk(
+  "netflix/getLiked",
+  async (email) => {
+    const {
+      data: { movies },
+    } = await axios.get(`http://localhost:5000/api/user/liked/${email}`);
+    return movies;
+  }
+);
+
+export const removeFromLikedMovies = createAsyncThunk(
+  "netflix/deleteLiked",
+  async ({email,movieId}) => {
+    const {
+      data: { movies },
+    } = await axios.put(`http://localhost:5000/api/user/delete`, {
+      email, movieId
+    });
+    return movies;
+  }
+);
 
 const NetflixSlice = createSlice({
   name: "Netflix",
@@ -79,6 +121,15 @@ const NetflixSlice = createSlice({
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
       state.movies = action.payload; // if fetchMovies is fulfilled we want to store the state.movies is equal to action.payload
     });
+    builder.addCase(fetchDataByGenre.fulfilled, (state, action) => {
+      state.movies = action.payload;
+    });
+    builder.addCase(getUserLikedMovies.fulfilled, (state, action) => {
+      state.movies = action.payload;
+    });
+     builder.addCase(removeFromLikedMovies.fulfilled, (state, action) => {
+       state.movies = action.payload;
+     });
   },
 });
 

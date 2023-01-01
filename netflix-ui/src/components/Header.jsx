@@ -12,7 +12,7 @@ export default function Header(props) {
       </div>
       <button onClick={()=> navigate(props.login?"/login" : "/signup")}>
         {/* if the props have provided a Login prop we need the Login text else Sign In text */}
-        {props.login ? "Log In" : "Sign In"}
+        {props.login ? "Log In" : "Sign Up"}
       </button>
     </Container>
   );

@@ -1,25 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Card from "./Card";
 import styled from "styled-components";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
-export default function CardSlider(data, title) {
-    const listRef = useRef();
+// React.memo only renders the page if it's props have changed
+
+export default React.memo(function CardSlider(data, title) {
+  const listRef = useRef();
   const [showControls, setShowControls] = useState(false);
   const [sliderPosition, setSliderPosition] = useState(0);
-  
 
   const handleDirection = (direction) => {
-    console.log(listRef);
-    let distance = listRef.current.getBoundingClientRect().x - 70;
-
-    if (direction === "left" && sliderPosition > 0) {
-      listRef.current.style.transform = `translateX(${230 + distance}px)`;
-      setSliderPosition(sliderPosition - 1);
-    }
-    if (direction === "right" && sliderPosition < 4) {
-      listRef.current.style.transform = `translateX(${-230 + distance}px)`;
-      setSliderPosition(sliderPosition + 1);
+    if (listRef.current) {
+      let distance = listRef.current.getBoundingClientRect().x - 70;
+      // rest of the code
+      if (listRef.current !== null || undefined) {
+        if (direction === "left" && sliderPosition > 0) {
+          listRef.current.style.transform = `translateX(${230 + distance}px)`;
+          setSliderPosition(sliderPosition - 1);
+        }
+        if (direction === "right") {
+          listRef.current.style.transform = `translateX(${-230 + distance}px)`;
+          setSliderPosition(sliderPosition + 1);
+        }
+      }
+      console.log(direction, listRef, sliderPosition);
     }
   };
 
@@ -36,7 +41,7 @@ export default function CardSlider(data, title) {
             !showControls ? "none" : ""
           } flex a-center j-center`}
         >
-          <AiOutlineLeft onClick={handleDirection("left")} />
+          <AiOutlineLeft onClick={() => handleDirection("left")} />
         </div>
         <div className="flex slider" ref={listRef}>
           {data.data.map((movie, index) => {
@@ -48,12 +53,12 @@ export default function CardSlider(data, title) {
             !showControls ? "none" : ""
           } flex a-center j-center`}
         >
-          <AiOutlineRight onClick={handleDirection("right")} />
+          <AiOutlineRight onClick={() => handleDirection("right")} />
         </div>
       </div>
     </Container>
   );
-}
+});
 
 const Container = styled.div`
   gap: 1rem;
@@ -80,6 +85,7 @@ const Container = styled.div`
       transition: 0.3s ease-in-out;
       svg {
         font-size: 2rem;
+        cursor: pointer;
       }
     }
     .none {
